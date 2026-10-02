@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<circle cx="256" cy="256" r="250" fill="#18a9df"/><circle cx="256" cy="256" r="218" fill="#e2261d" stroke="white" stroke-width="18"/>
+<path id="top" d="M92 257a164 164 0 0 1 328 0" fill="none"/><text fill="white" font-family="Arial,sans-serif" font-size="34" font-weight="700" letter-spacing="3"><textPath href="#top" startOffset="50%" text-anchor="middle">GRUPO CICLOTURISTA</textPath></text>
+<g stroke="#111" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="165" cy="275" r="54"/><circle cx="348" cy="275" r="54"/><path d="M165 275l72-74 48 74h-120l39-112h55l89 112M237 201l64-11"/></g>
+<path d="M263 137c27-31 70-20 81 12-21 4-34 15-42 34-25-1-42-18-39-46z" fill="#f6d229" stroke="#111" stroke-width="9"/><circle cx="293" cy="143" r="6" fill="#111"/><path d="M343 151l38 12-39 12z" fill="#f6d229" stroke="#111" stroke-width="7"/>
+<text x="256" y="380" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="53" font-weight="800">EL ZAHOR</text><text x="256" y="426" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-size="32" font-weight="700">DÚRCAL</text></svg>

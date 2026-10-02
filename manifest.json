@@ -1,13 +1,14 @@
 {
-  "name": "Peña Ciclista - Rutas",
-  "short_name": "Peña Ciclista",
+  "name": "Grupo Cicloturista El Zahor",
+  "short_name": "El Zahor",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f3f6f4",
-  "theme_color": "#146c43",
+  "background_color": "#f4f4f2",
+  "theme_color": "#e65300",
   "icons": [
     {
-      "src": "icon.svg",
+      "src": "logo_zahor.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

@@ -1,18 +1,23 @@
-<!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#146c43"><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
-<title>Peña Ciclista</title></head>
-<body><header><h1>🚴 Peña Ciclista</h1><p>Rutas programadas</p></header>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#e65300"><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css"><title>Peña Ciclista</title></head><body>
+<header><div class="brand"><img class="club-logo" src="logo_zahor.svg" alt="Logo Grupo Cicloturista El Zahor"><div><b id="clubName">G.C. El Zahor</b><small>Dúrcal · Ciclismo y amistad</small></div></div><button class="icon" id="adminBtn" title="Administración">⚙️</button></header>
 <main>
-<section class="card"><h2>Nueva ruta</h2><form id="routeForm">
-<label>Fecha<input type="date" id="date" required></label><label>Hora<input type="time" id="time" required></label>
-<label>Nombre<input id="name" required placeholder="Nombre de la ruta"></label>
-<div class="grid"><label>Distancia (km)<input type="number" id="km" min="0" step="0.1"></label><label>Desnivel (m)<input type="number" id="elev" min="0"></label></div>
-<label>Dificultad<select id="difficulty"><option>Baja</option><option>Media</option><option>Alta</option></select></label>
-<label>Punto de salida<input id="start" placeholder="Lugar o enlace de Maps"></label>
-<label>Enlace Strava<input type="url" id="strava" placeholder="https://www.strava.com/routes/..."></label>
-<label>Enlace al track GPX<input type="url" id="gpx" placeholder="https://.../ruta.gpx"></label>
-<label>Descripción<textarea id="description" rows="3"></textarea></label>
-<button type="submit">Guardar ruta</button></form></section>
-<section><div class="toolbar"><h2>Calendario</h2><button class="secondary" id="exportBtn">Exportar</button><label class="import">Importar<input type="file" id="importFile" accept="application/json"></label></div><div id="routes"></div></section>
-</main><footer>Los datos se guardan en este dispositivo.</footer><script src="app.js"></script></body></html>
+<section id="inicio" class="page active"><div class="hero"><div><small>PRÓXIMA SALIDA</small><h1 id="nextName">Sin rutas publicadas</h1><p id="nextMeta">El administrador puede añadir la primera ruta</p></div></div><h2>Accesos rápidos</h2><div class="quick-links">
+<a href="https://www.facebook.com/grupocicloturista.zahor/?locale=es_ES" target="_blank" rel="noopener">Facebook</a>
+<a href="#" class="pending" title="Añade el enlace oficial en index.html">Instagram</a>
+<a href="#" class="pending" title="Añade el enlace oficial en index.html">Strava del club</a></div>
+<h2>Noticias recientes</h2><div id="homeNews"></div>
+<h2>Prensa ciclista</h2><div class="press-links">
+<a href="https://www.ciclo21.com/" target="_blank" rel="noopener">Ciclo21</a><a href="https://www.esciclismo.com/" target="_blank" rel="noopener">EsCiclismo</a><a href="https://www.marca.com/ciclismo.html" target="_blank" rel="noopener">Marca Ciclismo</a><a href="https://www.mundodeportivo.com/ciclismo" target="_blank" rel="noopener">Mundo Deportivo</a></div></section>
+<section id="rutas" class="page"><div class="pagehead"><div><h1>Rutas</h1><p id="monthTitle"></p></div><button class="admin-only" data-open="routeForm">＋ Nueva</button></div><div id="routeList"></div></section>
+<section id="ranking" class="page"><div class="pagehead"><div><h1>Clasificación</h1><p>Puntos por salidas</p></div><button class="admin-only" data-open="rankImport">Importar</button></div><div class="podium" id="podium"></div><div class="card"><table><thead><tr><th>#</th><th>Socio</th><th>Puntos</th><th>Salidas</th></tr></thead><tbody id="rankRows"></tbody></table></div></section>
+<section id="sugerencias" class="page"><h1>Buzón</h1><p>Propón una ruta o envía una sugerencia.</p><form id="suggestForm" class="card"><label>Nombre (opcional)<input id="sgName"></label><label>Tipo<select id="sgType"><option>Ruta</option><option>Sugerencia</option></select></label><label>Mensaje<textarea id="sgText" required rows="5"></textarea></label><button>Enviar</button></form><div class="admin-only"><h2>Mensajes recibidos</h2><div id="suggestList"></div></div></section>
+<section id="noticias" class="page"><div class="pagehead"><h1>Noticias</h1><button class="admin-only" data-open="newsForm">＋ Nueva</button></div><div id="newsList"></div></section>
+<section id="fotos" class="page"><div class="pagehead"><h1>Fotos</h1><button class="admin-only" data-open="photoForm">＋ Subir</button></div><div id="gallery" class="gallery"></div></section>
+</main>
+<nav><button data-page="inicio">⌂<small>Inicio</small></button><button data-page="rutas">⌁<small>Rutas</small></button><button data-page="ranking">🏆<small>Puntos</small></button><button data-page="sugerencias">✉<small>Buzón</small></button><button data-page="noticias">☷<small>Noticias</small></button><button data-page="fotos">▧<small>Fotos</small></button></nav>
+<dialog id="login"><form method="dialog"><h2>Administrador</h2><label>PIN<input id="pin" type="password" inputmode="numeric"></label><p class="hint">PIN inicial: 2468. Cámbialo en app.js.</p><div class="row"><button value="cancel" class="ghost">Cancelar</button><button id="loginGo" value="default">Entrar</button></div></form></dialog>
+<dialog id="routeForm"><form id="routeFormEl"><h2>Nueva ruta</h2><label>Fecha<input id="rDate" type="date" required></label><label>Hora<input id="rTime" type="time" required></label><label>Nombre<input id="rName" required></label><div class="twocol"><label>Km<input id="rKm" type="number"></label><label>Desnivel m+<input id="rElev" type="number"></label></div><label>Salida<input id="rStart"></label><label>Strava<input id="rStrava" type="url"></label><label>Track GPX (enlace)<input id="rGpx" type="url"></label><div class="row"><button type="button" class="ghost close">Cancelar</button><button>Publicar</button></div></form></dialog>
+<dialog id="rankImport"><form><h2>Importar clasificación</h2><p>Edita <b>plantilla_clasificacion.xlsx</b> en Excel y guárdala como <b>CSV UTF-8</b>. Después selecciónala aquí.</p><input id="rankFile" type="file" accept=".csv,text/csv"><div class="row"><button type="button" class="ghost close">Cerrar</button></div></form></dialog>
+<dialog id="newsForm"><form id="newsFormEl"><h2>Nueva noticia</h2><label>Título<input id="nTitle" required></label><label>Texto<textarea id="nText" rows="5" required></textarea></label><div class="row"><button type="button" class="ghost close">Cancelar</button><button>Publicar</button></div></form></dialog>
+<dialog id="photoForm"><form id="photoFormEl"><h2>Subir foto</h2><label>Título<input id="pTitle"></label><input id="pFile" type="file" accept="image/*" required><div class="row"><button type="button" class="ghost close">Cancelar</button><button>Guardar</button></div></form></dialog>
+<script src="app.js"></script></body></html>

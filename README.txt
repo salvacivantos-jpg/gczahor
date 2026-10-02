@@ -1,11 +1,13 @@
-PEÑA CICLISTA — APP INSTALABLE
+PEÑA CICLISTA V2 — MODIFICABLE
 
-Es una PWA (aplicación web instalable) para Android e iPhone.
+Publicación: sustituye en tu repositorio de GitHub Pages todos los archivos anteriores por estos y espera a que Actions termine en verde.
 
-PUBLICACIÓN:
-1. Sube el contenido de esta carpeta a cualquier alojamiento HTTPS (GitHub Pages, Netlify, servidor de la peña, etc.).
-2. Abre la dirección en el móvil.
-3. Android/Chrome: menú > Instalar aplicación.
-4. iPhone/Safari: Compartir > Añadir a pantalla de inicio.
+ADMINISTRADOR: pulsa el engranaje. PIN inicial 2468. Para cambiarlo, edita ADMIN_PIN al principio de app.js.
 
-Incluye calendario, alta y borrado de rutas, enlaces Strava/GPX, exportación e importación. Los datos se guardan localmente en cada dispositivo. No incluye servidor ni sincronización entre socios.
+CLASIFICACIÓN: abre plantilla_clasificacion.xlsx en Excel, rellena Nombre/Puntos/Salidas y guarda como CSV UTF-8. En la app: engranaje > PIN > Clasificación > Importar.
+
+IMPORTANTE: esta versión GitHub Pages guarda datos en el navegador de cada dispositivo (localStorage). No existe sincronización entre móviles. El PIN sólo oculta controles, no es seguridad real. Para datos compartidos entre socios, buzón centralizado y administración segura se necesita Firebase/Supabase u otro backend.
+
+Modificación: index.html = pantallas; styles.css = aspecto; app.js = funciones y PIN.
+
+NOVEDADES V3: identidad El Zahor, logo, Facebook oficial, accesos preparados para Instagram y Strava, y enlaces a prensa ciclista. Sustituye los # de Instagram y Strava en index.html por las URL oficiales. referencia_diseno.png se incluye únicamente como referencia visual y no se carga en la app.
