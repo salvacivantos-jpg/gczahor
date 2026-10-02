@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#146c43"><link rel="manifest" href="manifest.json"><link rel="stylesheet" href="styles.css">
+<title>Peña Ciclista</title></head>
+<body><header><h1>🚴 Peña Ciclista</h1><p>Rutas programadas</p></header>
+<main>
+<section class="card"><h2>Nueva ruta</h2><form id="routeForm">
+<label>Fecha<input type="date" id="date" required></label><label>Hora<input type="time" id="time" required></label>
+<label>Nombre<input id="name" required placeholder="Nombre de la ruta"></label>
+<div class="grid"><label>Distancia (km)<input type="number" id="km" min="0" step="0.1"></label><label>Desnivel (m)<input type="number" id="elev" min="0"></label></div>
+<label>Dificultad<select id="difficulty"><option>Baja</option><option>Media</option><option>Alta</option></select></label>
+<label>Punto de salida<input id="start" placeholder="Lugar o enlace de Maps"></label>
+<label>Enlace Strava<input type="url" id="strava" placeholder="https://www.strava.com/routes/..."></label>
+<label>Enlace al track GPX<input type="url" id="gpx" placeholder="https://.../ruta.gpx"></label>
+<label>Descripción<textarea id="description" rows="3"></textarea></label>
+<button type="submit">Guardar ruta</button></form></section>
+<section><div class="toolbar"><h2>Calendario</h2><button class="secondary" id="exportBtn">Exportar</button><label class="import">Importar<input type="file" id="importFile" accept="application/json"></label></div><div id="routes"></div></section>
+</main><footer>Los datos se guardan en este dispositivo.</footer><script src="app.js"></script></body></html>

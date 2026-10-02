@@ -1,0 +1,9 @@
+const KEY='pena-ciclista-rutas-v1';let routes=JSON.parse(localStorage.getItem(KEY)||'[]');
+const $=id=>document.getElementById(id);function save(){localStorage.setItem(KEY,JSON.stringify(routes));render()}
+function esc(s=''){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function render(){routes.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));$('routes').innerHTML=routes.length?routes.map((r,i)=>`<article class="route"><h3>${esc(r.name)}</h3><div class="meta">📅 ${esc(r.date)} · ${esc(r.time)}　📏 ${esc(r.km||'—')} km · ⛰️ ${esc(r.elev||'—')} m · ${esc(r.difficulty)}</div>${r.start?`<p>📍 ${esc(r.start)}</p>`:''}${r.description?`<p>${esc(r.description)}</p>`:''}<div class="actions">${r.strava?`<a target="_blank" rel="noopener" href="${esc(r.strava)}">Abrir Strava</a>`:''}${r.gpx?`<a target="_blank" rel="noopener" href="${esc(r.gpx)}">Abrir GPX</a>`:''}<button class="danger" onclick="removeRoute(${i})">Eliminar</button></div></article>`).join(''):'<div class="empty">Todavía no hay rutas programadas.</div>'}
+$('routeForm').onsubmit=e=>{e.preventDefault();routes.push({date:$('date').value,time:$('time').value,name:$('name').value,km:$('km').value,elev:$('elev').value,difficulty:$('difficulty').value,start:$('start').value,strava:$('strava').value,gpx:$('gpx').value,description:$('description').value});save();e.target.reset()};
+window.removeRoute=i=>{if(confirm('¿Eliminar esta ruta?')){routes.splice(i,1);save()}};
+$('exportBtn').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(routes,null,2)],{type:'application/json'}));a.download='rutas-pena-ciclista.json';a.click()};
+$('importFile').onchange=async e=>{try{const x=JSON.parse(await e.target.files[0].text());if(!Array.isArray(x))throw 0;routes=x;save()}catch{alert('Archivo no válido')}};
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');render();
